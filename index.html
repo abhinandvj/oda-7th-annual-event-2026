@@ -120,7 +120,7 @@ let giftOpen=false;
 function gift(){
  giftOpen=true;
  document.getElementById('giftIcon').textContent='🎉';
- document.getElementById('giftMessage').innerHTML='You are invited to a celebration of <span style="color:var(--lime)">20 amazing years!</span><br><small>And the next chapter starts with YOU! 💛</small>';
+ document.getElementById('giftMessage').innerHTML='You are invited to celebrate <span style="color:var(--lime)">ODA’s 7th Annual Event!</span><br><small>Theme: “20 Years – The Opportunity of a Generation” ✨</small>';
  document.getElementById('replay').textContent='🎉 Celebrate again';
  burst(90);
 }
@@ -131,86 +131,90 @@ document.getElementById('replay').onclick=()=>{
 };document.getElementById('finalCelebrate').onclick=()=>burst(100);
 document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('quizResult').textContent=b.dataset.result;burst(22)});
 function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.style.display='none',3300)}
-document.getElementById('share').onclick=async()=>{const text='🎉 You’re invited! ODA 20 Years — The Opportunity of a Generation. Tuesday, 24 Nov, 8 PM IST. Join here: https://peurl.in/4QwyNR9QFs';if(navigator.share){try{await navigator.share({title:'ODA 20 Years Invitation',text})}catch(e){}}else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);toast('Invitation copied! Share it with your family 🎉')}catch(e){toast('Share: '+text)}}else{toast('Share this link: https://peurl.in/4QwyNR9QFs')}};
+document.getElementById('share').onclick=async()=>{const text='🎉 You’re invited to ODA’s 7th Annual Event! Theme: 20 Years – The Opportunity of a Generation. Tuesday, 24 Nov, 8 PM IST. Join here: https://peurl.in/4QwyNR9QFs';if(navigator.share){try{await navigator.share({title:'ODA 7th Annual Event Invitation',text})}catch(e){}}else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);toast('Invitation copied! Share it with your family 🎉')}catch(e){toast('Share: '+text)}}else{toast('Share this link: https://peurl.in/4QwyNR9QFs')}};
 const target=Date.parse('2026-11-24T20:00:00+05:30');function tick(){let x=Math.max(0,target-Date.now());let v=[Math.floor(x/86400000),Math.floor(x/3600000)%24,Math.floor(x/60000)%60,Math.floor(x/1000)%60];['d','h','m','s'].forEach((id,i)=>document.getElementById(id).textContent=String(v[i]).padStart(2,'0'));if(x===0)document.querySelector('#countdown .section-title').textContent='It’s celebration time! 🎉'}tick();setInterval(tick,1000);
-document.getElementById('calendar').onclick=()=>{const txt=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ODA Event Invitation//EN','BEGIN:VEVENT','UID:oda-annual-event-2026@odaclass','DTSTAMP:20261123T000000Z','DTSTART:20261124T143000Z','DTEND:20261124T160000Z','SUMMARY:ODA Annual Event 2026 - 20 Years','DESCRIPTION:Join live on ODA App: https://peurl.in/4QwyNR9QFs','URL:https://peurl.in/4QwyNR9QFs','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/calendar'}));a.download='ODA_Annual_Event_2026.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+document.getElementById('calendar').onclick=()=>{const txt=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ODA Event Invitation//EN','BEGIN:VEVENT','UID:oda-annual-event-2026@odaclass','DTSTAMP:20261123T000000Z','DTSTART:20261124T143000Z','DTEND:20261124T160000Z','SUMMARY:ODA 7th Annual Event 2026 - The Opportunity of a Generation','DESCRIPTION:Join live on ODA App: https://peurl.in/4QwyNR9QFs','URL:https://peurl.in/4QwyNR9QFs','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/calendar'}));a.download='ODA_Annual_Event_2026.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(x=>observer.observe(x));
-// Original upbeat celebration soundtrack: bright chords, rhythmic bass, kick and sparkling percussion.
- // It starts from the Tap to Enter gesture and loops continuously without visible controls.
- let ctx=null, interval=null, playing=false, master=null, step=0, noiseBuffer=null;
- const bpm=120, beatMs=60000/bpm;
- function tone(freq,when,dur,type='sine',vol=.1,slideTo=null){
-  const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;
-  o.frequency.setValueAtTime(freq,when);
-  if(slideTo!==null)o.frequency.exponentialRampToValueAtTime(Math.max(1,slideTo),when+dur);
-  g.gain.setValueAtTime(.0001,when);
-  g.gain.exponentialRampToValueAtTime(vol,when+.012);
-  g.gain.exponentialRampToValueAtTime(.0001,when+dur);
-  o.connect(g);g.connect(master);o.start(when);o.stop(when+dur+.025);
+
+// Original celebratory pop-fanfare soundtrack: bright brass-like synths,
+// a driving dance beat, claps, sparkling hats and an uplifting major-key hook.
+// Starts after the visitor taps the entry screen and loops without visible controls.
+let ctx=null, interval=null, playing=false, master=null, step=0, noiseBuffer=null;
+const bpm=124, beatMs=60000/bpm;
+function tone(freq,when,dur,type='sine',vol=.1,slideTo=null,detune=0){
+ const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;
+ o.frequency.setValueAtTime(freq,when);o.detune.value=detune;
+ if(slideTo!==null)o.frequency.exponentialRampToValueAtTime(Math.max(1,slideTo),when+dur);
+ g.gain.setValueAtTime(.0001,when);
+ g.gain.exponentialRampToValueAtTime(vol,when+.012);
+ g.gain.exponentialRampToValueAtTime(.0001,when+dur);
+ o.connect(g);g.connect(master);o.start(when);o.stop(when+dur+.03);
+}
+function noise(t,dur,vol,cutoff=1200){
+ if(!noiseBuffer){
+  noiseBuffer=ctx.createBuffer(1,ctx.sampleRate*.3,ctx.sampleRate);
+  const d=noiseBuffer.getChannelData(0);
+  for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
  }
- function kick(t){
-  tone(125,t,.22,'sine',.42,42);
+ const n=ctx.createBufferSource(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+ n.buffer=noiseBuffer;f.type='highpass';f.frequency.value=cutoff;
+ g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ n.connect(f);f.connect(g);g.connect(master);n.start(t);n.stop(t+dur+.01);
+}
+function kick(t){
+ const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';
+ o.frequency.setValueAtTime(145,t);o.frequency.exponentialRampToValueAtTime(43,t+.19);
+ g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.0001,t+.23);
+ o.connect(g);g.connect(master);o.start(t);o.stop(t+.24);
+}
+function clap(t){noise(t,.16,.16,950);tone(210,t,.12,'triangle',.09,130)}
+function hat(t,open=false){noise(t,open?.13:.045,open?.055:.035,6500)}
+const chords=[
+ [261.63,329.63,392.00], [196.00,246.94,392.00],
+ [220.00,261.63,329.63], [174.61,220.00,261.63]
+];
+const roots=[130.81,98.00,110.00,87.31];
+const hook=[523.25,659.25,783.99,1046.5,987.77,783.99,659.25,783.99,
+            880.00,783.99,659.25,587.33,523.25,587.33,659.25,783.99];
+function brass(freq,t,dur){
+ tone(freq,t,dur,'sawtooth',.075,null,-5);
+ tone(freq*1.003,t,dur,'sawtooth',.055,null,5);
+ tone(freq*2,t,dur*.82,'triangle',.025);
+}
+function musicStep(){
+ if(!ctx||ctx.state!=='running')return;
+ const t=ctx.currentTime+.025, s=step%32, bar=Math.floor(step/32)%4;
+ if(s%4===0)kick(t);
+ if(s%8===4)clap(t);
+ hat(t,s%4===2);
+ if(s%8===0){
+  const chord=chords[bar];
+  chord.forEach(f=>brass(f*2,t,.34));
+  tone(roots[bar],t,.42,'sawtooth',.13,roots[bar]*.92);
+  chord.forEach(f=>tone(f*2,t+.02,.55,'triangle',.035));
  }
- function snare(t){
-  tone(185,t,.13,'triangle',.13,105);
-  if(!noiseBuffer){
-   noiseBuffer=ctx.createBuffer(1,ctx.sampleRate*.2,ctx.sampleRate);
-   const d=noiseBuffer.getChannelData(0);
-   for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+ if(s%2===0)tone(roots[bar],t,.18,'square',.055,roots[bar]*.96);
+ if(s%2===0){
+  const note=hook[(Math.floor(step/2))%hook.length];
+  tone(note,t,.19,'triangle',.075);
+  if(s===24||s===28)tone(note*2,t,.12,'sine',.025);
+ }
+ if(s===0)noise(t,.42,.055,8200);
+ step++;
+}
+async function startMusic(){
+ if(playing)return;
+ try{
+  if(!ctx){
+   ctx=new(window.AudioContext||window.webkitAudioContext)();
+   master=ctx.createGain();master.gain.value=.34;master.connect(ctx.destination);
   }
-  const n=ctx.createBufferSource(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-  n.buffer=noiseBuffer;f.type='highpass';f.frequency.value=1200;
-  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+.16);
-  n.connect(f);f.connect(g);g.connect(master);n.start(t);n.stop(t+.18);
- }
- function hat(t,accent=false){
-  if(!noiseBuffer){
-   noiseBuffer=ctx.createBuffer(1,ctx.sampleRate*.2,ctx.sampleRate);
-   const d=noiseBuffer.getChannelData(0);
-   for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
-  }
-  const n=ctx.createBufferSource(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-  n.buffer=noiseBuffer;f.type='highpass';f.frequency.value=7000;
-  const peak=accent?.065:.035;
-  g.gain.setValueAtTime(peak,t);g.gain.exponentialRampToValueAtTime(.0001,t+.055);
-  n.connect(f);f.connect(g);g.connect(master);n.start(t);n.stop(t+.06);
- }
- const chordSets=[
-  [261.63,329.63,392.00], // C
-  [220.00,261.63,329.63], // Am
-  [174.61,220.00,261.63], // F
-  [196.00,246.94,293.66]  // G
- ];
- const bassNotes=[130.81,110.00,87.31,98.00];
- const melody=[523.25,659.25,783.99,659.25,587.33,659.25,783.99,1046.5,
-               783.99,659.25,587.33,523.25,587.33,659.25,783.99,880.00];
- function musicStep(){
-  if(!ctx||ctx.state!=='running')return;
-  const t=ctx.currentTime+.025, beat=step%16, bar=Math.floor(step/16)%4;
-  if(beat%4===0)kick(t);
-  if(beat%8===4)snare(t);
-  hat(t,beat%4===0);
-  if(beat%4===0){
-   const chord=chordSets[bar];
-   chord.forEach((f,i)=>tone(f*2,t,.48,'triangle',i===0?.055:.04));
-   tone(bassNotes[bar],t,.42,'sawtooth',.12,bassNotes[bar]*.88);
-  }
-  if(beat%2===0)tone(melody[(step/2|0)%melody.length],t,.22,'triangle',.09);
-  step++;
- }
- async function startMusic(){
-  if(playing)return;
-  try{
-   if(!ctx){
-    ctx=new(window.AudioContext||window.webkitAudioContext)();
-    master=ctx.createGain();master.gain.value=.42;master.connect(ctx.destination);
-   }
-   if(ctx.state==='suspended')await ctx.resume();
-   if(ctx.state!=='running')return;
-   playing=true;musicStep();interval=setInterval(musicStep,beatMs/2);
-  }catch(err){/* Retry is not needed after a successful user gesture on supported browsers. */}
- }
- // Music starts only from the visitor's explicit Tap to Enter action.
+  if(ctx.state==='suspended')await ctx.resume();
+  if(ctx.state!=='running')return;
+  playing=true;musicStep();interval=setInterval(musicStep,beatMs/2);
+ }catch(err){/* Audio is started only after a visitor gesture. */}
+}
+// Music starts only from the visitor's explicit Tap to Enter action.
  const entryGate=document.getElementById('entryGate');
  const enterButton=document.getElementById('enterCelebration');
  let hasEntered=false;
