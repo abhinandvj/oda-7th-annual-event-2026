@@ -48,6 +48,11 @@
 /* Keep the first gift action visible, and avoid browser styles overriding hidden states. */
 [hidden]{display:none!important}
 
+
+.urgency-badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 17px;padding:9px 17px;border:1px solid #ffdc94;border-radius:999px;background:linear-gradient(110deg,#ffdf9b,#ffb84f);color:#14263b;font-size:clamp(12px,2.5vw,15px);font-weight:1000;letter-spacing:.12em;box-shadow:0 0 24px #ffbf5160,0 7px 22px #0003;animation:urgencyPulse 1.8s ease-in-out infinite}
+.urgency-badge:before{content:'⏳';font-size:1.1em}
+@keyframes urgencyPulse{50%{transform:scale(1.035);box-shadow:0 0 32px #ffbf5190,0 7px 22px #0003}}
+
 .entry-gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:radial-gradient(ellipse at 50% 25%,#18566b 0,#09283f 48%,#041323 100%);overflow:hidden;transition:opacity .65s ease,visibility .65s ease}
 .entry-gate:before,.entry-gate:after{content:'';position:absolute;border:1px solid #ffdc8c35;border-radius:50%;width:min(90vw,720px);aspect-ratio:1;animation:entryOrbit 14s linear infinite}
 .entry-gate:after{width:min(120vw,950px);animation-direction:reverse;opacity:.55}
@@ -80,7 +85,8 @@
   <div class="entry-glow"></div>
   <div class="entry-card">
     <div class="entry-logo">oda<span>➤</span><small><b>2027</b> <i>AI</i></small></div>
-    <div class="entry-kicker">YOU'RE INVITED</div>
+    <div class="urgency-badge" id="entryCountdownBadge">1 DAY TO GO</div>
+   <div class="entry-kicker">YOU'RE INVITED</div>
     <h1>Let the celebration<br><em>begin!</em></h1>
     <p>Join us for the ODA 7th Annual Event</p>
     <button class="entry-button" id="enterCelebration" type="button">
@@ -92,7 +98,7 @@
 </div>
 
 <div class="top"><div class="logo"><img id="logo" alt="ODA"><div class="brandline"><span>2027</span><b>AI</b></div></div></div>
-<main><section class="screen hero" id="home"><div class="stars"></div><div class="orb a"></div><div class="orb b"></div><div class="inner"><div class="eyebrow">ODA 7th Annual Event · 2026</div><div class="big20">20</div><div class="years">YEARS</div><h1><span class="gradient">THE OPPORTUNITY<br>OF A GENERATION</span></h1><p class="lead">India’s Rise and the Choices That Can Shape Your Child’s Future</p><div class="eventpill"><span>📅 Tue, 24 Nov 2026</span><span>🕗 8:00 PM IST</span><span class="live">● LIVE on ODA App</span></div><div class="buttons"><a class="btn" href="https://peurl.in/4QwyNR9QFs" target="_blank" rel="noopener">🎟️ Register / Join Live ↗</a><a class="btn alt" href="#play">✨ Explore the magic ↓</a></div><div class="scroll">Scroll to discover surprises ✦</div></div></section>
+<main><section class="screen hero" id="home"><div class="stars"></div><div class="orb a"></div><div class="orb b"></div><div class="inner"><div class="urgency-badge" id="heroCountdownBadge">1 DAY TO GO</div><div class="eyebrow">ODA 7th Annual Event · 2026</div><div class="big20">20</div><div class="years">YEARS</div><h1><span class="gradient">THE OPPORTUNITY<br>OF A GENERATION</span></h1><p class="lead">India’s Rise and the Choices That Can Shape Your Child’s Future</p><div class="eventpill"><span>📅 Tue, 24 Nov 2026</span><span>🕗 8:00 PM IST</span><span class="live">● LIVE on ODA App</span></div><div class="buttons"><a class="btn" href="https://peurl.in/4QwyNR9QFs" target="_blank" rel="noopener">🎟️ Register / Join Live ↗</a><a class="btn alt" href="#play">✨ Explore the magic ↓</a></div><div class="scroll">Scroll to discover surprises ✦</div></div></section>
 <section class="screen teal" id="play"><div class="inner center reveal"><div class="eyebrow">A little magic for you</div><h2 class="section-title">Tap the gift to unwrap<br><span style="color:var(--lime)">a surprise!</span></h2><p class="section-desc">There’s something special waiting for every family. Tap the gift box!</p><button style="background:none;border:0" id="gift" aria-label="Open celebration gift"><span class="gift" id="giftIcon">🎁</span></button><div id="giftMessage" style="min-height:100px;font-size:22px;font-weight:800;margin-top:20px">✨ Ready for the reveal?</div><div class="buttons"><button class="btn" id="replay">🎉 Celebrate</button></div></div></section>
 <section class="screen purple" id="upgrades"><div class="inner"><div class="center reveal"><div class="eyebrow">Learning is about to change</div><h2 class="section-title">8 BIG UPGRADES.<br><span style="color:#ff8dd2">Endless possibilities.</span></h2><p class="section-desc">Tap each card to explore what’s new. Two exciting surprises are still under wraps — watch the event to discover them!</p></div><div class="grid" id="upgradeGrid"></div></div></section>
 <section class="screen goldsec" id="speakers"><div class="inner reveal"><div class="center"><div class="eyebrow">Meet the minds behind the ideas</div><h2 class="section-title">Your guides to the future</h2><p class="section-desc">Be there for a special keynote from Gopal Sir, alongside perspectives from ODA’s academic and student-success leaders.</p></div><div class="keynote"><div class="keynote-badge">FEATURED KEYNOTE SPEAKER</div><div class="keynote-avatar">G</div><div class="keynote-copy"><div class="eyebrow">The voice to watch</div><h3>Gopal Sir</h3><div class="keynote-role">Chief Academic Officer · IIT Dhanbad</div><p>Get ready for an important perspective on the choices shaping the next generation. Catch Gopal Sir live at the ODA 7th Annual Event.</p><div class="keynote-pulse">✦ A special moment of the evening ✦</div></div></div><div class="speakergrid"><div class="speaker"><div class="avatar">R</div><h3>Rishabh</h3><b>IIT Jodhpur</b><p>Head of Curriculum</p></div><div class="speaker"><div class="avatar">A</div><h3>Akshay</h3><b>IIT Delhi</b><p>Head of Student Success</p></div></div></div></section>
@@ -144,7 +150,26 @@ document.getElementById('replay').onclick=()=>{
 document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('quizResult').textContent=b.dataset.result;burst(22)});
 function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.style.display='none',3300)}
 document.getElementById('share').onclick=async()=>{const text='🎉 You’re invited to ODA’s 7th Annual Event! Theme: 20 Years – The Opportunity of a Generation. Tuesday, 24 Nov, 8 PM IST. Join here: https://peurl.in/4QwyNR9QFs';if(navigator.share){try{await navigator.share({title:'ODA 7th Annual Event Invitation',text})}catch(e){}}else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);toast('Invitation copied! Share it with your family 🎉')}catch(e){toast('Share: '+text)}}else{toast('Share this link: https://peurl.in/4QwyNR9QFs')}};
-const target=Date.parse('2026-11-24T20:00:00+05:30');function tick(){let x=Math.max(0,target-Date.now());let v=[Math.floor(x/86400000),Math.floor(x/3600000)%24,Math.floor(x/60000)%60,Math.floor(x/1000)%60];['d','h','m','s'].forEach((id,i)=>document.getElementById(id).textContent=String(v[i]).padStart(2,'0'));if(x===0)document.querySelector('#countdown .section-title').textContent='It’s celebration time! 🎉'}tick();setInterval(tick,1000);
+const target=Date.parse('2026-11-24T20:00:00+05:30');
+function updateEventUrgency(){
+ const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const part=k=>Number(parts.find(p=>p.type===k).value);
+ const today=Date.UTC(part('year'),part('month')-1,part('day'));
+ const eventDay=Date.UTC(2026,10,24);
+ const days=Math.round((eventDay-today)/86400000);
+ let label;
+ if(Date.now()>=target) label='WE’RE LIVE NOW!';
+ else if(days===0) label='FEW HOURS TO GO!';
+ else if(days===1) label='1 DAY TO GO!';
+ else if(days>1) label=days+' DAYS TO GO!';
+ else label='THE CELEBRATION IS LIVE!';
+ ['entryCountdownBadge','heroCountdownBadge'].forEach(id=>{
+  const el=document.getElementById(id);if(el)el.textContent=label;
+ });
+}
+updateEventUrgency();
+setInterval(updateEventUrgency,30000);
+function tick(){let x=Math.max(0,target-Date.now());let v=[Math.floor(x/86400000),Math.floor(x/3600000)%24,Math.floor(x/60000)%60,Math.floor(x/1000)%60];['d','h','m','s'].forEach((id,i)=>document.getElementById(id).textContent=String(v[i]).padStart(2,'0'));if(x===0)document.querySelector('#countdown .section-title').textContent='It’s celebration time! 🎉'}tick();setInterval(tick,1000);
 document.getElementById('calendar').onclick=()=>{const txt=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ODA Event Invitation//EN','BEGIN:VEVENT','UID:oda-annual-event-2026@odaclass','DTSTAMP:20261123T000000Z','DTSTART:20261124T143000Z','DTEND:20261124T160000Z','SUMMARY:ODA 7th Annual Event 2026 - The Opportunity of a Generation','DESCRIPTION:Join live on ODA App: https://peurl.in/4QwyNR9QFs','URL:https://peurl.in/4QwyNR9QFs','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/calendar'}));a.download='ODA_Annual_Event_2026.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(x=>observer.observe(x));
 
