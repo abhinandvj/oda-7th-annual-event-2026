@@ -70,6 +70,8 @@
 .entry-play{width:29px;height:29px;border-radius:50%;background:#14263b;color:#ffe7a0;display:grid;place-items:center;font-size:12px;padding-left:2px}
 .entry-foot{font-size:12px;color:#c2d4df;margin-top:17px}
 .entry-theme{font-size:9px;letter-spacing:.18em;color:#ffdf9b;margin-top:29px;font-weight:850}
+.hero-upgrades{display:inline-flex;align-items:center;justify-content:center;margin:13px auto 4px;padding:10px 18px;border:1px solid #ffe09a99;border-radius:999px;background:linear-gradient(100deg,#ffdf9b22,#ff78b922);color:#ffe7a8;font-size:clamp(10px,2.3vw,13px);font-weight:950;letter-spacing:.1em;box-shadow:0 0 28px #ffbf5130;text-shadow:0 1px 8px #0005}
+.entry-upgrades{display:inline-flex;align-items:center;justify-content:center;margin-top:12px;padding:9px 15px;border:1px solid #ffdf9b80;border-radius:999px;background:linear-gradient(100deg,#ffdf9b20,#ff78b920);color:#ffe7a8;font-size:11px;font-weight:950;letter-spacing:.09em;box-shadow:0 0 22px #ffbf5120}
 .entry-gate.leaving{opacity:0;visibility:hidden;pointer-events:none}
 @keyframes entryOrbit{to{transform:rotate(360deg)}}
 @keyframes entryRise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
@@ -81,7 +83,7 @@
         async src="//gc.zgo.at/count.js"></script>
 
   <body><div class="custom-cursor" id="customCursor" aria-hidden="true"><span></span></div>
-<div class="entry-gate" id="entryGate" role="dialog" aria-modal="true" aria-label="Enter the ODA celebration">
+<div class="entry-gate" id="entryGate" role="dialog" aria-modal="true" aria-label="Open your ODA event invitation">
   <div class="entry-glow"></div>
   <div class="entry-card">
     <div class="entry-logo">oda<span>➤</span><small><b>2027</b> <i>AI</i></small></div>
@@ -90,15 +92,16 @@
     <h1>Let the celebration<br><em>begin!</em></h1>
     <p>Join us for the ODA 7th Annual Event</p>
     <button class="entry-button" id="enterCelebration" type="button">
-      <span class="entry-play">▶</span> Tap to enter the celebration
+      <span class="entry-play">💌</span> OPEN YOUR INVITATION
     </button>
     <div class="entry-foot">🎵 Turn up your volume for the experience</div>
     <div class="entry-theme">20 YEARS · THE OPPORTUNITY OF A GENERATION</div>
+    <div class="entry-upgrades">🚀 BIGGEST UPGRADES IN 7 YEARS</div>
   </div>
 </div>
 
 <div class="top"><div class="logo"><img id="logo" alt="ODA"><div class="brandline"><span>2027</span><b>AI</b></div></div></div>
-<main><section class="screen hero" id="home"><div class="stars"></div><div class="orb a"></div><div class="orb b"></div><div class="inner"><div class="urgency-badge" id="heroCountdownBadge">1 DAY TO GO</div><div class="eyebrow">ODA 7th Annual Event · 2026</div><div class="big20">20</div><div class="years">YEARS</div><h1><span class="gradient">THE OPPORTUNITY<br>OF A GENERATION</span></h1><p class="lead">India’s Rise and the Choices That Can Shape Your Child’s Future</p><div class="eventpill"><span>📅 Tue, 24 Nov 2026</span><span>🕗 8:00 PM IST</span><span class="live">● LIVE on ODA App</span></div><div class="buttons"><a class="btn" href="https://peurl.in/4QwyNR9QFs" target="_blank" rel="noopener">🎟️ Register / Join Live ↗</a><a class="btn alt" href="#play">✨ Explore the magic ↓</a></div><div class="scroll">Scroll to discover surprises ✦</div></div></section>
+<main><section class="screen hero" id="home"><div class="stars"></div><div class="orb a"></div><div class="orb b"></div><div class="inner"><div class="urgency-badge" id="heroCountdownBadge">1 DAY TO GO</div><div class="eyebrow">ODA 7th Annual Event · 2026</div><div class="hero-upgrades">🚀 BIGGEST UPGRADES IN 7 YEARS</div><div class="big20">20</div><div class="years">YEARS</div><h1><span class="gradient">THE OPPORTUNITY<br>OF A GENERATION</span></h1><p class="lead">India’s Rise and the Choices That Can Shape Your Child’s Future</p><div class="eventpill"><span>📅 Tue, 24 Nov 2026</span><span>🕗 8:00 PM IST</span><span class="live">● LIVE on ODA App</span></div><div class="buttons"><a class="btn" href="https://peurl.in/4QwyNR9QFs" target="_blank" rel="noopener">🎟️ Register / Join Live ↗</a><a class="btn alt" href="#play">✨ Explore the magic ↓</a></div><div class="scroll">Scroll to discover surprises ✦</div></div></section>
 <section class="screen teal" id="play"><div class="inner center reveal"><div class="eyebrow">A little magic for you</div><h2 class="section-title">Tap the gift to unwrap<br><span style="color:var(--lime)">a surprise!</span></h2><p class="section-desc">There’s something special waiting for every family. Tap the gift box!</p><button style="background:none;border:0" id="gift" aria-label="Open celebration gift"><span class="gift" id="giftIcon">🎁</span></button><div id="giftMessage" style="min-height:100px;font-size:22px;font-weight:800;margin-top:20px">✨ Ready for the reveal?</div><div class="buttons"><button class="btn" id="replay">🎉 Celebrate</button></div></div></section>
 <section class="screen purple" id="upgrades"><div class="inner"><div class="center reveal"><div class="eyebrow">Learning is about to change</div><h2 class="section-title">8 BIG UPGRADES.<br><span style="color:#ff8dd2">Endless possibilities.</span></h2><p class="section-desc">Tap each card to explore what’s new. Two exciting surprises are still under wraps — watch the event to discover them!</p></div><div class="grid" id="upgradeGrid"></div></div></section>
 <section class="screen goldsec" id="speakers"><div class="inner reveal"><div class="center"><div class="eyebrow">Meet the minds behind the ideas</div><h2 class="section-title">Your guides to the future</h2><p class="section-desc">Be there for a special keynote from Gopal Sir, alongside perspectives from ODA’s academic and student-success leaders.</p></div><div class="keynote"><div class="keynote-badge">FEATURED KEYNOTE SPEAKER</div><div class="keynote-avatar">G</div><div class="keynote-copy"><div class="eyebrow">The voice to watch</div><h3>Gopal Sir</h3><div class="keynote-role">Chief Academic Officer · IIT Dhanbad</div><p>Get ready for an important perspective on the choices shaping the next generation. Catch Gopal Sir live at the ODA 7th Annual Event.</p><div class="keynote-pulse">✦ A special moment of the evening ✦</div></div></div><div class="speakergrid"><div class="speaker"><div class="avatar">R</div><h3>Rishabh</h3><b>IIT Jodhpur</b><p>Head of Curriculum</p></div><div class="speaker"><div class="avatar">A</div><h3>Akshay</h3><b>IIT Delhi</b><p>Head of Student Success</p></div></div></div></section>
@@ -251,7 +254,7 @@ async function startMusic(){
   playing=true;musicStep();interval=setInterval(musicStep,beatMs/2);
  }catch(err){/* Audio is started only after a visitor gesture. */}
 }
-// Music starts only from the visitor's explicit Tap to Enter action.
+// Music starts only from the visitor's explicit Open Your Invitation action.
  const entryGate=document.getElementById('entryGate');
  const enterButton=document.getElementById('enterCelebration');
  let hasEntered=false;
