@@ -281,7 +281,7 @@ const finePointer=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 let lastBurst=0;
 function makeBurst(x,y,force=false){
  const now=performance.now();
- if(!force && now-lastBurst<42)return;
+ if(!force && now-lastBurst<30)return;
  lastBurst=now;
  const palette=['gold','gold','gold','red','green'];
  const rays=13+Math.floor(Math.random()*7);
@@ -328,21 +328,25 @@ if(finePointer && customCursor){
   el.addEventListener('mouseleave',()=>customCursor.classList.remove('hover'));
  });
 }else{
- // Touch devices: burst immediately on tap, then leave a firework trail while dragging.
+ // Touch devices: use native touch events for both taps AND finger movement,
+ // including movement while the browser is scrolling the page. Never preventDefault,
+ // so native scrolling, swiping and page navigation remain fully enabled.
+ window.addEventListener('touchstart',e=>{
+  for(const t of e.changedTouches)makeBurst(t.clientX,t.clientY,true);
+ },{passive:true,capture:true});
+
+ window.addEventListener('touchmove',e=>{
+  // Use active touches (not only changedTouches) so the trail continues smoothly
+  // during a one-finger scroll on iOS Safari and Android Chrome.
+  for(const t of e.touches)makeBurst(t.clientX,t.clientY);
+ },{passive:true,capture:true});
+
+ // Pointer fallback for stylus input on touch-capable devices.
  document.addEventListener('pointerdown',e=>{
-  if(e.pointerType==='touch' || e.pointerType==='pen')makeBurst(e.clientX,e.clientY,true);
+  if(e.pointerType==='pen')makeBurst(e.clientX,e.clientY,true);
  },{passive:true});
  document.addEventListener('pointermove',e=>{
-  if(e.pointerType==='touch' || e.pointerType==='pen')makeBurst(e.clientX,e.clientY);
+  if(e.pointerType==='pen')makeBurst(e.clientX,e.clientY);
  },{passive:true});
- // Fallback for older browsers without Pointer Events.
- if(!window.PointerEvent){
-  document.addEventListener('touchstart',e=>{
-   for(const t of e.changedTouches)makeBurst(t.clientX,t.clientY,true);
-  },{passive:true});
-  document.addEventListener('touchmove',e=>{
-   for(const t of e.changedTouches)makeBurst(t.clientX,t.clientY);
-  },{passive:true});
- }
 }
 </script></body></html>
